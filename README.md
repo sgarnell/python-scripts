@@ -25,8 +25,10 @@ agent land on the **`muse`** branch first and are merged by hand.
 | `s_index_image1.py` | Alternative draft rendering of resonator slide 1, with a worked example | matplotlib |
 | `make_pathway_slide.py` | Slide defining the pathway weight $P$ (the gold edges) | matplotlib |
 
-All slide scripts write their PNG **beside the script itself** — no
-machine-specific paths — so they run unchanged on any machine.
+Every figure script writes its PNG into an **`output/` folder beside
+the script itself** (the folder is created automatically if it does not
+exist) — no machine-specific paths — so they run unchanged on any
+machine.
 
 ## Setup
 
@@ -220,7 +222,7 @@ python3 make_resonator_slides.py 3        # slide 3: the G factor (Onnela intens
 python3 make_resonator_slides.py all      # all three slides
 ```
 
-Outputs, written beside the script: `resonator-slide1-definition.png`,
+Outputs, written to the `output/` folder: `resonator-slide1-definition.png`,
 `resonator-slide2-E.png`, `resonator-slide3-G.png`. Any other argument
 builds nothing. The one positional argument is the script's only option.
 
@@ -230,7 +232,7 @@ builds nothing. The one positional argument is the script's only option.
 python3 s_index_image1.py                 # no options
 ```
 
-Writes `s_index_image1.png` beside the script. A two-column alternative
+Writes `s_index_image1.png` to the `output/` folder. A two-column alternative
 rendering of slide 1 (Figure 1 plus the worked FB5U ↔ hDeltaH7 example
 of §3). It is a draft variant kept for comparison; the canonical slide 1
 is the one built by `make_resonator_slides.py`.
@@ -241,7 +243,7 @@ is the one built by `make_resonator_slides.py`.
 python3 make_pathway_slide.py             # no options
 ```
 
-Writes `pathway-slide.png` beside the script: Definition 2 and
+Writes `pathway-slide.png` to the `output/` folder: Definition 2 and
 equations (8)–(10) of §4, the drawing rule, and the worked
 G01 → G09 example.
 

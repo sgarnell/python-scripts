@@ -9,7 +9,8 @@ B = target columns {3, 4}. The nested loop visits the 2x2 A x B rectangle
 row by row and adds its four cells; every cell outside the rectangle is
 never visited.
 
-Output: nested-loop-eq8.png beside this script.
+Output: nested-loop-eq8.png in an output/ folder beside this script
+(created if it does not exist).
 Run:    python make_nested_loop_eq8.py
 Needs:  matplotlib
 """
@@ -22,7 +23,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, Rectangle
 
-OUT = Path(__file__).resolve().parent / "nested-loop-eq8.png"
+OUT_DIR = Path(__file__).resolve().parent / "output"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+OUT = OUT_DIR / "nested-loop-eq8.png"
 
 BG = "#1E1E1E"
 INK = "#D4D4D4"

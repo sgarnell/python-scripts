@@ -36,6 +36,13 @@ plt.rcParams["font.serif"] = ["Liberation Serif", "DejaVu Serif"]
 FIG_W, FIG_H, DPI = 13.333, 7.5, 200
 
 
+def out_path(name):
+    """PNGs go into an output/ folder beside this script, created if needed."""
+    d = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    os.makedirs(d, exist_ok=True)
+    return os.path.join(d, name)
+
+
 def new_slide():
     fig = plt.figure(figsize=(FIG_W, FIG_H), dpi=DPI)
     fig.patch.set_facecolor(BG)
@@ -200,7 +207,7 @@ def slide1():
             "G after Onnela, Saramäki, Kertész & Kaski, Phys. Rev. E 71, 065103 (2005).",
             fontsize=9.8, color=GREY, va="center", style="italic")
 
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resonator-slide1-definition.png")
+    out = out_path("resonator-slide1-definition.png")
     fig.savefig(out, dpi=DPI, facecolor=BG)
     print("wrote", out)
 
@@ -300,7 +307,7 @@ def slide2():
             "Bascompte, Jordano & Olesen, Science 312, 431–433 (2006).",
             fontsize=9.8, color=GREY, va="center", style="italic")
 
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resonator-slide2-E.png")
+    out = out_path("resonator-slide2-E.png")
     fig.savefig(out, dpi=DPI, facecolor=BG)
     print("wrote", out)
 
@@ -379,7 +386,7 @@ def slide3():
             "Thomas (1981), negative-loop necessity; Buzsáki & Wang, Annu. Rev. Neurosci. 35 (2012).",
             fontsize=9.8, color=GREY, va="center", style="italic")
 
-    out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resonator-slide3-G.png")
+    out = out_path("resonator-slide3-G.png")
     fig.savefig(out, dpi=DPI, facecolor=BG)
     print("wrote", out)
 

@@ -18,7 +18,9 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Circle
 
 import os
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "s_index_image1.png")
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+os.makedirs(OUT_DIR, exist_ok=True)
+OUT = os.path.join(OUT_DIR, "s_index_image1.png")
 
 INK = "#E6E6E6"
 DIM = "#9DA3AB"

@@ -10,7 +10,8 @@ parents. Right grid: the same grid scaled by sigma — the mode's layer,
 matching make_mode_block_eq9.py. No addition happens anywhere in this
 figure; adding starts only when a block of the layer is summed.
 
-Output: outer-product.png beside this script.
+Output: outer-product.png in an output/ folder beside this script
+(created if it does not exist).
 Run:    python make_outer_product.py
 Needs:  matplotlib
 """
@@ -23,7 +24,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-OUT = Path(__file__).resolve().parent / "outer-product.png"
+OUT_DIR = Path(__file__).resolve().parent / "output"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+OUT = OUT_DIR / "outer-product.png"
 
 BG = "#1E1E1E"
 INK = "#D4D4D4"

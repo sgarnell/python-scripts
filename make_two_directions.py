@@ -11,7 +11,8 @@ columns (X axis) are targets; each cell is one directed connection
 row -> column. The double sum nests inside ONE direction; the reverse
 direction is the same formula run again with the groups swapped.
 
-Output: two-directions.png beside this script.
+Output: two-directions.png in an output/ folder beside this script
+(created if it does not exist).
 Run:    python make_two_directions.py
 Needs:  matplotlib
 """
@@ -24,7 +25,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-OUT = Path(__file__).resolve().parent / "two-directions.png"
+OUT_DIR = Path(__file__).resolve().parent / "output"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+OUT = OUT_DIR / "two-directions.png"
 
 BG = "#1E1E1E"
 INK = "#D4D4D4"

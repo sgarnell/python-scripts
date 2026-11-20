@@ -25,7 +25,8 @@ the pipeline's stored pathway values:
   Top-5 cap never binds in this run (busiest source, G10, has 3 edges).
 
 Usage: python3 make_pathway_slide.py
-Output: pathway-slide.png beside this script.
+Output: pathway-slide.png in an output/ folder beside this script
+(created if it does not exist).
 """
 import os
 import sys
@@ -49,8 +50,9 @@ plt.rcParams["font.family"] = "serif"
 plt.rcParams["font.serif"] = ["Liberation Serif", "DejaVu Serif"]
 
 FIG_W, FIG_H, DPI = 13.333, 7.5, 200
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                   "pathway-slide.png")
+OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+os.makedirs(OUT_DIR, exist_ok=True)
+OUT = os.path.join(OUT_DIR, "pathway-slide.png")
 
 
 def new_slide():

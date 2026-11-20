@@ -12,7 +12,8 @@ U, the sigma cell of Sigma, a row of V^T) multiplying out into a layer;
 the A x B block of each layer; omega read off the Sigma diagonal,
 squared and shared out; the weighted blend landing on M_AB.
 
-Output: mode-block-eq9.png beside this script.
+Output: mode-block-eq9.png in an output/ folder beside this script
+(created if it does not exist).
 Run:    python make_mode_block_eq9.py
 Needs:  matplotlib
 """
@@ -25,7 +26,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-OUT = Path(__file__).resolve().parent / "mode-block-eq9.png"
+OUT_DIR = Path(__file__).resolve().parent / "output"
+OUT_DIR.mkdir(parents=True, exist_ok=True)
+OUT = OUT_DIR / "mode-block-eq9.png"
 
 BG = "#1E1E1E"
 INK = "#D4D4D4"
