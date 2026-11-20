@@ -11,7 +11,9 @@ Personal Python utilities for local development, in two families:
    exported through FlyBrainLab. The slides define and defend the two
    scores the pipeline computes: the **resonator score** $S$ over
    reciprocal neuron pairs, and the **pathway weight** $P$ behind the
-   gold group-to-group edges of the combined graph.
+   gold group-to-group edges of the combined graph. Four small
+   **teaching figures** accompany the pathway slide, unpacking its
+   equations (8)–(9) step by step on a 4-neuron toy example.
 
 Branch convention: `main` is the owner's; contributions from the Muse
 agent land on the **`muse`** branch first and are merged by hand.
@@ -24,6 +26,11 @@ agent land on the **`muse`** branch first and are merged by hand.
 | `make_resonator_slides.py` | The three resonator-score slides (definition of $S$; the $E$ factor; the $G$ factor) | matplotlib |
 | `s_index_image1.py` | Alternative draft rendering of resonator slide 1, with a worked example | matplotlib |
 | `make_pathway_slide.py` | Slide defining the pathway weight $P$ (the gold edges) | matplotlib |
+| `make_pathway_slide_gloss-revision.py` | Variant of the pathway slide with an expanded gloss under equation (9) | matplotlib |
+| `make_nested_loop_eq8.py` | Teaching figure: equation (8)'s double sum as a nested loop over a toy block | matplotlib |
+| `make_two_directions.py` | Teaching figure: $R_{AB}$ and $R_{BA}$ are separate rectangles of the same $W$ | matplotlib |
+| `make_mode_block_eq9.py` | Teaching figure: equation (9) on a toy — mode layers, the $\omega$ weights, the blend $M$ | matplotlib |
+| `make_outer_product.py` | Teaching figure: how a column × a row builds one mode's layer (the outer product) | matplotlib |
 
 Every figure script writes its PNG into an **`output/` folder beside
 the script itself** (the folder is created automatically if it does not
@@ -246,6 +253,77 @@ python3 make_pathway_slide.py             # no options
 Writes `pathway-slide.png` to the `output/` folder: Definition 2 and
 equations (8)–(10) of §4, the drawing rule, and the worked
 G01 → G09 example.
+
+### `make_pathway_slide_gloss-revision.py` — the gold-edge slide, expanded gloss
+
+```bash
+python3 make_pathway_slide_gloss-revision.py   # no options
+```
+
+A variant of `make_pathway_slide.py` with one change: the gloss under
+equation (9) is expanded to spell out the recipe — take the $A$
+entries of $U$'s column $m$ and the $B$ entries of $V^{T}$'s row $m$,
+multiply every $A$ entry by every $B$ entry (the grid
+$\sigma_m u_m v_m^{T}$), add them all, then weight by $\omega_m$.
+It writes the same `pathway-slide.png` filename to the `output/`
+folder, so it overwrites the main slide's output (and vice versa);
+it is kept as a separate script until the expanded gloss is adopted.
+
+### `make_nested_loop_eq8.py` — teaching figure: the double sum as a nested loop
+
+```bash
+python3 make_nested_loop_eq8.py           # no options
+```
+
+Writes `nested-loop-eq8.png` to the `output/` folder. Equation (8)'s
+double sum walked through on a toy $4 \times 4$ $W$ (neurons
+$n_1$–$n_4$; $A = \{n_1, n_2\}$, $B = \{n_3, n_4\}$): the block is
+visited cell by cell in row order — $R_{AB} = -0.30 + 0.40 + 0.12 -
+0.16 = +0.06$ — beside the equivalent Python nested loop. The toy
+weights are invented for clean arithmetic, not pipeline data.
+
+### `make_two_directions.py` — teaching figure: $R_{AB}$ and $R_{BA}$ are different sums
+
+```bash
+python3 make_two_directions.py            # no options
+```
+
+Writes `two-directions.png` to the `output/` folder. The same toy
+$W$ with both off-diagonal blocks outlined: $R_{AB} = +0.06$ (rows
+$A$, columns $B$) and $R_{BA} = +0.50$ (rows $B$, columns $A$).
+Every cell carries a direction (read row → column), mirror cells
+across the diagonal are different synapses, and the double sum
+inside one block never produces the other direction — the pipeline
+evaluates all 132 ordered group pairs separately.
+
+### `make_mode_block_eq9.py` — teaching figure: the mode block sum and the $\omega$ weights
+
+```bash
+python3 make_mode_block_eq9.py            # no options
+```
+
+Writes `mode-block-eq9.png` to the `output/` folder. Equation (9) on
+the same toy neurons with $k = 2$ invented modes ($\sigma = 2, 1$):
+each mode's layer is block-summed ($+0.12$ and $+0.77$), the weights
+$\omega_m$ are read off the $\Sigma$ diagonal — $\omega_m =
+\sigma_m^2 / \sum_j \sigma_j^2$, here $0.80$ and $0.20$ — and
+$M_{AB} = 0.80 \times 0.12 + 0.20 \times 0.77 = +0.25$. The toy modes
+are invented for clean arithmetic; they are not the SVD of the toy
+$W$.
+
+### `make_outer_product.py` — teaching figure: column × row = grid
+
+```bash
+python3 make_outer_product.py             # no options
+```
+
+Writes `outer-product.png` to the `output/` folder. How one mode's
+layer is built: every entry of the column $u_1$ times every entry of
+the row $v_1^{T}$ — a multiplication table with no addition
+anywhere. One cell is spotlighted ($n_3 \to n_4$: $+0.90 \times
++0.80 = +0.72$, then $\times\ \sigma_1 = 2.0$ in the layer,
+$+1.44$); addition only starts when a block of the layer is summed,
+as in equation (9).
 
 ---
 
