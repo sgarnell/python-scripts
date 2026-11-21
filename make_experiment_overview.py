@@ -215,7 +215,7 @@ def build():
             ax.text(x + 0.15, top - 0.70 - j * 0.245, ln, fontsize=9.7,
                     color=BODY, va="center")
 
-    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out_qbi")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "bruno-experiment-overview.png")
     fig.savefig(out, dpi=DPI, facecolor=BG)

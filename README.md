@@ -48,7 +48,9 @@ agent land on the **`muse`** branch first and are merged by hand.
 Every figure script writes its PNG into an **`output/` folder beside
 the script itself** (the folder is created automatically if it does not
 exist) — no machine-specific paths — so they run unchanged on any
-machine.
+machine. The one exception: the two Bruno experiment slides write into
+an **`out_qbi/`** folder instead, to keep their files apart from the
+eigen-decomposition figures.
 
 ## Setup
 
@@ -373,7 +375,7 @@ G01 → G09 is the largest $|P|$ of the 132 ordered group pairs.
 python3 make_experiment_overview.py       # no options
 ```
 
-Writes `bruno-experiment-overview.png` to the `output/` folder. The
+Writes `bruno-experiment-overview.png` to the `out_qbi/` folder. The
 experiment tests whether anesthetics silence cognition by
 preferentially suppressing excitatory (cholinergic) transmission to
 the fan-shaped body. The slide carries the hypothesis — including the
@@ -390,7 +392,7 @@ combined test.
 python3 make_what_counts.py               # no options
 ```
 
-Writes `bruno-what-counts.png` to the `output/` folder: the three
+Writes `bruno-what-counts.png` to the `out_qbi/` folder: the three
 pre-agreed criteria for calling the anesthetic's effect cognitive —
 a shared EC50 between its physiological and behavioural effects,
 phenocopy (genetic silencing of FB5 reproducing the anesthetic's

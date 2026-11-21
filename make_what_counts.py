@@ -111,7 +111,7 @@ def build():
             "The same ordering as clinical anesthesia, where awareness is lost at doses below those that abolish movement.",
             **CLAIM)
 
-    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out_qbi")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "bruno-what-counts.png")
     fig.savefig(out, dpi=DPI, facecolor=BG)
