@@ -157,9 +157,9 @@ contain. Recordings, and fitted dynamical models, decide.
 The gold dashed edges of the combined graph are an aggregate layer over
 the groups of §2. For distinct groups $A$, $B$:
 
-$$R_{AB} = \sum_{a \in A}\sum_{b \in B} w_{ab} \qquad\text{(raw block sum)}$$
+$$R_{AB} = \sum_{(a,b)\,\in\,A \times B} w_{ab} \qquad\text{(raw block sum)}$$
 
-$$M_{AB} = \sum_{m=1}^{9} \omega_m \sum_{a \in A}\sum_{b \in B} \sigma_m\, u_{am} v_{bm}, \qquad \omega_m = \frac{\sigma_m^2}{\sum_{j=1}^{9} \sigma_j^2} \qquad\text{(mode block sum)}$$
+$$M_{AB} = \sum_{m=1}^{9} \omega_m \sum_{(a,b)\,\in\,A \times B} \sigma_m\, u_{am} v_{bm}, \qquad \omega_m = \frac{\sigma_m^2}{\sum_{j=1}^{9} \sigma_j^2} \qquad\text{(mode block sum)}$$
 
 $$P_{AB} = 0.7\, R_{AB} + 0.3\, M_{AB}$$
 
@@ -358,9 +358,8 @@ $W$ and adds its 42 cells ($R = -15.18$); slide 2 reads the same block
 through the nine retained modes — mode 1 contributes $-6.00$ of
 $M = -6.01$, modes 2–9 together $-0.01$; slide 3 substitutes into
 $P = 0.7R + 0.3M = -12.43$. The block sums are spelled with the single
-summation $\sum_{(a,b)\,\in\,A \times B}$ rather than the nested
-double sum of §4 — the same sum, written over the set of ordered
-pairs.
+summation $\sum_{(a,b)\,\in\,A \times B}$, matching §4 — the same sum,
+written over the set of ordered pairs.
 
 Needs numpy and matplotlib, plus the run's two data files
 (`z_matrix.42d6ad4c.npz` and `eigen.42d6ad4c.json`), located by
