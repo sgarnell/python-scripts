@@ -1,6 +1,6 @@
 # python-scripts
 
-Personal Python utilities for local development, in two families:
+Personal Python utilities for local development, in three families:
 
 1. **A spelling/grammar bridge** that lets the Obsidian "LanguageTool
    Integration" plugin proofread with a local LLM served by LM Studio
@@ -14,6 +14,15 @@ Personal Python utilities for local development, in two families:
    gold group-to-group edges of the combined graph. Four small
    **teaching figures** accompany the pathway slide, unpacking its
    equations (8)–(9) step by step on a 4-neuron toy example.
+   A further three-slide set works equations (8)–(10) end to end on
+   the reference run's real numbers.
+3. **Experiment-design slides** for the anesthetic programme run with
+   Bruno van Swinderen's lab — one slide overviewing the four-leg
+   experiment, and a companion slide stating what would count as the
+   cognitive link.
+
+Plus one general utility: a read-only checker to run before moving a
+JetBrains project folder.
 
 Branch convention: `main` is the owner's; contributions from the Muse
 agent land on the **`muse`** branch first and are merged by hand.
@@ -31,6 +40,10 @@ agent land on the **`muse`** branch first and are merged by hand.
 | `make_two_directions.py` | Teaching figure: $R_{AB}$ and $R_{BA}$ are separate rectangles of the same $W$ | matplotlib |
 | `make_mode_block_eq9.py` | Teaching figure: equation (9) on a toy — mode layers, the $\omega$ weights, the blend $M$ | matplotlib |
 | `make_outer_product.py` | Teaching figure: how a column × a row builds one mode's layer (the outer product) | matplotlib |
+| `make_eq8_9_slides.py` | Three slides working equations (8)–(10) on the reference run's real numbers (G01 → G09) | numpy, matplotlib + run data |
+| `make_experiment_overview.py` | Overview slide for the Bruno anesthetic experiment (hypothesis, circuit, four legs) | matplotlib |
+| `make_what_counts.py` | Companion slide: what would count as the cognitive link (the three criteria) | matplotlib |
+| `check_project_move.py` | Read-only pre-move checker for JetBrains project folders | Python 3, standard library only |
 
 Every figure script writes its PNG into an **`output/` folder beside
 the script itself** (the folder is created automatically if it does not
@@ -324,6 +337,82 @@ anywhere. One cell is spotlighted ($n_3 \to n_4$: $+0.90 \times
 +0.80 = +0.72$, then $\times\ \sigma_1 = 2.0$ in the layer,
 $+1.44$); addition only starts when a block of the layer is summed,
 as in equation (9).
+
+### `make_eq8_9_slides.py` — equations (8)–(10) on the real run
+
+```bash
+python3 make_eq8_9_slides.py              # slide 1 only (the raw block sum R)
+python3 make_eq8_9_slides.py 2            # slide 2: the mode block sum M
+python3 make_eq8_9_slides.py 3            # slide 3: the blend P, end to end
+python3 make_eq8_9_slides.py all          # all three slides
+python3 make_eq8_9_slides.py all --data-dir /path/to/run-folder
+```
+
+Writes `eq8-9-slide1.png`, `eq8-9-slide2.png` and `eq8-9-slide3.png`
+to the `output/` folder. Where the teaching figures above use an
+invented toy, these slides work the pathway example of §4 on the
+reference run's real numbers: slide 1 opens up the G01 → G09 block of
+$W$ and adds its 42 cells ($R = -15.18$); slide 2 reads the same block
+through the nine retained modes — mode 1 contributes $-6.00$ of
+$M = -6.01$, modes 2–9 together $-0.01$; slide 3 substitutes into
+$P = 0.7R + 0.3M = -12.43$. The block sums are spelled with the single
+summation $\sum_{(a,b)\,\in\,A \times B}$ rather than the nested
+double sum of §4 — the same sum, written over the set of ordered
+pairs.
+
+Needs numpy and matplotlib, plus the run's two data files
+(`z_matrix.42d6ad4c.npz` and `eigen.42d6ad4c.json`), located by
+`--data-dir` if given, else the `EIGEN_RUN_DIR` environment variable,
+else a `data/processed/hDelta_ABH_FB_15pre_001_merged_data_v1/`
+folder beside the script. On loading, the script verifies that
+G01 → G09 is the largest $|P|$ of the 132 ordered group pairs.
+
+### `make_experiment_overview.py` — the Bruno experiment on one slide
+
+```bash
+python3 make_experiment_overview.py       # no options
+```
+
+Writes `bruno-experiment-overview.png` to the `output/` folder. The
+experiment tests whether anesthetics silence cognition by
+preferentially suppressing excitatory (cholinergic) transmission to
+the fan-shaped body. The slide carries the hypothesis — including the
+catch that both branches of the ExR7 fork are cholinergic synapses
+from the same axon, so any dissociation must emerge downstream — the
+circuit (EPG → ExR7, forking to FB4Y and the FB5 ⇄ hDelta loop on one
+side and to LAL013 and exploratory turning on the other), and the
+four legs: baseline, deactivation, graded anesthetic atlas, and the
+combined test.
+
+### `make_what_counts.py` — what would count as the cognitive link
+
+```bash
+python3 make_what_counts.py               # no options
+```
+
+Writes `bruno-what-counts.png` to the `output/` folder: the three
+pre-agreed criteria for calling the anesthetic's effect cognitive —
+a shared EC50 between its physiological and behavioural effects,
+phenocopy (genetic silencing of FB5 reproducing the anesthetic's
+fingerprint with no drug present), and occlusion read as the
+two-route dissociation — each with a worked illustration and the
+failure mode that would rule it out.
+
+### `check_project_move.py` — before moving a project folder
+
+```bash
+python3 check_project_move.py /path/to/project [/path/to/new/location]
+```
+
+Read-only, standard library only: it never moves, edits or deletes
+anything. Run it before relocating a PyCharm / GoLand project root.
+It reports absolute references to the old location inside the project
+(scripts, configs, `.idea` run configurations), an in-project
+`.venv` (recreate it after the move — its internals hold absolute
+paths), git worktrees, submodules or a `.git` file pointing
+elsewhere, absolute symlinks, and `go.mod` `replace` directives
+pointing at absolute paths. Exit code 0 = nothing that would break
+the move, 1 = at least one blocking item, 2 = usage error.
 
 ---
 
