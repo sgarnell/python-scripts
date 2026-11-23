@@ -36,7 +36,7 @@ agent land on the **`muse`** branch first and are merged by hand.
 | `s_index_image1.py` | Alternative draft rendering of resonator slide 1, with a worked example | matplotlib |
 | `make_pathway_slide.py` | Slide defining the pathway weight $P$ (the gold edges) | matplotlib |
 | `make_pathway_slide_gloss-revision.py` | Variant of the pathway slide with an expanded gloss under equation (9) | matplotlib |
-| `make_nested_loop_eq8.py` | Teaching figure: equation (8)'s double sum as a nested loop over a toy block | matplotlib |
+| `make_nested_loop_eq8.py` | Teaching figure: equation (8) in two stages — group pairs first, then A/B as dummy variables | matplotlib |
 | `make_two_directions.py` | Teaching figure: $R_{AB}$ and $R_{BA}$ are separate rectangles of the same $W$ | matplotlib |
 | `make_mode_block_eq9.py` | Teaching figure: equation (9) on a toy — mode layers, the $\omega$ weights, the blend $M$ | matplotlib |
 | `make_outer_product.py` | Teaching figure: how a column × a row builds one mode's layer (the outer product) | matplotlib |
@@ -284,18 +284,23 @@ It writes the same `pathway-slide.png` filename to the `output/`
 folder, so it overwrites the main slide's output (and vice versa);
 it is kept as a separate script until the expanded gloss is adopted.
 
-### `make_nested_loop_eq8.py` — teaching figure: the double sum as a nested loop
+### `make_nested_loop_eq8.py` — teaching figure: equation (8) in two stages
 
 ```bash
 python3 make_nested_loop_eq8.py           # no options
 ```
 
-Writes `nested-loop-eq8.png` to the `output/` folder. Equation (8)'s
-double sum walked through on a toy $4 \times 4$ $W$ (neurons
-$n_1$–$n_4$; $A = \{n_1, n_2\}$, $B = \{n_3, n_4\}$): the block is
-visited cell by cell in row order — $R_{AB} = -0.30 + 0.40 + 0.12 -
-0.16 = +0.06$ — beside the equivalent Python nested loop. The toy
-weights are invented for clean arithmetic, not pipeline data.
+Writes `nested-loop-eq8.png` to the `output/` folder. Equation (8)
+in two stages on a toy $4 \times 4$ $W$ (neurons $n_1$–$n_4$ in two
+groups, $G1 = \{n_1, n_2\}$ and $G2 = \{n_3, n_4\}$). Stage 1: the
+groups make two ordered pairs, and each pair fills the roles of
+eq. (8) — $A$ and $B$ are dummy variables, not groups. Stage 2:
+each pair's block is summed cell by cell in loop order —
+$R_{G1 \rightarrow G2} = R_{AB} = +0.06$ and
+$R_{G2 \rightarrow G1} = R_{AB} = +0.50$. The toy weights are
+invented for clean arithmetic, not pipeline data. (This figure
+absorbs the point of `make_two_directions.py`, which stays in the
+repo.)
 
 ### `make_two_directions.py` — teaching figure: $R_{AB}$ and $R_{BA}$ are different sums
 
