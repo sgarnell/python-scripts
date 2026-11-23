@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pathway (gold edge) slide for Sharon: how the gold lines are calculated.
+"""Pathway (gold edge) slide: how the gold lines are calculated.
 
 Companion to make_resonator_slides.py -- same journal structure (numbered
 Definition, numbered equations continuing the set, Remark box) typeset in

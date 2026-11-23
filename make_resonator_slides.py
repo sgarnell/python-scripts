@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Resonator-score slides for Sharon (S = G x E).
+"""Resonator-score slides (S = G x E).
 
 Journal structure (Definition / Proposition, numbered equations) typeset
 in Computer Modern math (matplotlib mathtext, fontset 'cm') with
@@ -252,25 +252,24 @@ def slide2():
            r"never annihilate it — annihilation is carried by $G$ alone (Proposition 1(ii)).")
 
     # ---- B: the sender-side control ----------------------------------
-    _head(ax, 4.96, r"The sender-side control: $E^{pre}$")
-    math_row(fig, ax, 0.85, 4.54, [
+    _head(ax, 4.74, r"The sender-side control: $E^{pre}$")
+    math_row(fig, ax, 0.85, 4.32, [
         (r"$E^{pre}_{ab}$", GREY, 16.5, "normal"),
         (r"$= \sqrt{z^{pre}_{a\to b}\;z^{pre}_{b\to a}}$", INK, 16.5, "normal"),
     ])
-    _eqnum(ax, 4.54, "(5)")
-    _gloss(ax, 4.18,
+    _eqnum(ax, 4.32, "(5)")
+    _gloss(ax, 3.96,
            "the same construction on the sender side — a legitimate alternative a priori, kept for comparison. "
            "As a score it fails the test the adopted factor passes:")
-    _gloss(ax, 3.92,
+    _gloss(ax, 3.70,
            r"Glu–ACh pairs in the top 12: $E^{post}$ finds 7 of 12 ($p = 0.0002$); $E^{pre}$ finds 1 of 12 "
            r"($p = 0.85$). The two scores correlate 0.96 over all 127 pairs, yet their top-12 lists overlap in only 5 —")
-    _gloss(ax, 3.66,
-           r"the receiver-side signal lives at the top of the list, where candidacy is decided. (Stranded by the "
-           r"control: FB5U–H1, the highest $E^{pre}$ of any pair, 0.933, with $G = 0.114$.)")
+    _gloss(ax, 3.44,
+           "the receiver-side signal lives at the top of the list, where candidacy is decided.")
 
     # ---- C: the predecessor ------------------------------------------
-    _head(ax, 3.24, r"The predecessor: $E^{I}$  (Bascompte dependence)")
-    math_row(fig, ax, 0.85, 2.84, [
+    _head(ax, 2.62, r"The predecessor: $E^{I}$  (share-based, after Bascompte)")
+    math_row(fig, ax, 0.85, 2.22, [
         (r"$E^{I}_{ab}$", GREY, 16, "normal"),
         (r"$= \sqrt{s_{a\to b}\;s_{b\to a}}$", INK, 16, "normal"),
         ("      with      ", GREY, 12, "normal"),
@@ -278,26 +277,14 @@ def slide2():
         (" ,       ", GREY, 12, "normal"),
         (r"$I_a = \sum_u |w_{ua}|$", INK, 16, "normal"),
     ])
-    _eqnum(ax, 2.84, "(6)")
-    _gloss(ax, 2.48,
+    _eqnum(ax, 2.22, "(6)")
+    _gloss(ax, 1.86,
            r"whence the closed form $S^{I}_{ab} = |w_{ab}|\,|w_{ba}|/\sqrt{I_a I_b}$ — the pair's leg product "
            r"discounted by the two neurons' total incoming budgets (Bascompte et al. 2006).")
-    _gloss(ax, 2.22,
-           r"the flaw is $I$: a within-set budget over only the exported neurons (FB5E: $I = 0.13$, 4 sources; "
-           r"FB4M: $I = 3.09$, 20) — one pair, two exports, two scores. $E^{post}$ depends on the pair alone.")
+    _gloss(ax, 1.60,
+           r"the flaw is $I$: a within-set budget over only the exported neurons — change the export and "
+           r"the same pair scores differently: one pair, two exports, two scores. $E^{post}$ depends on the pair alone.")
 
-    # ---- Remark box ----------------------------------------------------
-    ax.add_patch(FancyBboxPatch((0.55, 0.72), 12.23, 1.22,
-                                boxstyle="round,pad=0,rounding_size=0.06",
-                                facecolor=PANEL, edgecolor=BLUE, lw=1.1))
-    ax.text(0.85, 1.72, "Remark.", fontsize=13.5, color=BLUE,
-            fontweight="bold", va="center")
-    ax.text(0.85, 1.36,
-            r"$E$ alone is not sufficient either: FB5D$\leftrightarrow$FB5E ranks #2 of 127 by $E^{post}$ (0.310) on legs of only 0.060 — the full score ranks the pair #42.",
-            fontsize=11.8, color=INK, va="center")
-    ax.text(0.85, 1.02,
-            r"prominence without intensity is not a loop; that is $G$'s veto (slide 3).   ·   Ceiling caveat: $E$ inherits the export's pinning of $z^{post}$ at 1.0 (top $E$ values 0.94, 0.91, 0.89, $\ldots$).",
-            fontsize=11.8, color=INK, va="center")
 
     # ---- footer ---------------------------------------------------------
     ax.text(0.55, 0.40,
@@ -337,45 +324,33 @@ def slide3():
            "both legs enter as magnitudes: G measures how strongly the loop is wired, irrespective of dominance direction.")
 
     # ---- B: loop gain --------------------------------------------------
-    _head(ax, 4.96, r"Remark: $G$ and loop gain")
-    math_row(fig, ax, 0.85, 4.54, [
+    _head(ax, 4.74, r"Remark: $G$ and loop gain")
+    math_row(fig, ax, 0.85, 4.32, [
         (r"$\Lambda_{ab}$", INK, 16.5, "normal"),
         (r"$= |w_{ab}|\;|w_{ba}| = $", INK, 16.5, "normal"),
         (r"$G_{ab}^2$", TEAL, 16.5, "normal"),
     ])
-    _eqnum(ax, 4.54, "(7)")
-    _gloss(ax, 4.18,
+    _eqnum(ax, 4.32, "(7)")
+    _gloss(ax, 3.96,
            "the product around a cycle is its loop gain; G is that gain's per-step geometric mean, "
            r"$\sqrt{\Lambda_{ab}}$. A resonator requires loop gain together with an E–I sign structure —")
-    _gloss(ax, 3.92,
+    _gloss(ax, 3.70,
            r"and $G$ supplies only the magnitude. The sign structure is not in $\mathrm{sign}(w)$ (dominance, not coupling sign): "
            "it is read from the transmitters — ACh excitatory, Glu inhibitory — the pair's E–I grade.")
 
     # ---- C: why geometric ----------------------------------------------
-    _head(ax, 3.50, "Why the geometric mean: the imbalance tax")
-    math_row(fig, ax, 0.85, 3.10, [
+    _head(ax, 2.88, "Why the geometric mean: the imbalance tax")
+    math_row(fig, ax, 0.85, 2.48, [
         (r"$G_{ab} \leq \frac{|w_{ab}| + |w_{ba}|}{2}$", INK, 16, "normal"),
     ])
-    _eqnum(ax, 3.10, "(AM–GM)")
-    _gloss(ax, 2.74,
+    _eqnum(ax, 2.48, "(AM–GM)")
+    _gloss(ax, 2.12,
            "by AM–GM, with equality iff the legs are equal. The arithmetic mean pays an unbalanced pair for one strong leg; "
            "the geometric mean taxes imbalance — replacing geometric by arithmetic")
-    _gloss(ax, 2.48,
-           "inflates FB5A↔FB5H ×1.58 and FB4L↔FB4M ×1.40; the near-balanced FB3A↔FB4M barely moves. "
+    _gloss(ax, 1.86,
+           "inflates an unbalanced pair, paying one strong leg as if the loop were strong; balanced pairs barely move. "
            "Zero test: legs 0.9 and 0 — arithmetic claims 0.45, a half-loop; geometric says 0.")
 
-    # ---- Remark box ------------------------------------------------------
-    ax.add_patch(FancyBboxPatch((0.55, 0.72), 12.23, 1.22,
-                                boxstyle="round,pad=0,rounding_size=0.06",
-                                facecolor=PANEL, edgecolor=BLUE, lw=1.1))
-    ax.text(0.85, 1.72, "Remark.", fontsize=13.5, color=BLUE,
-            fontweight="bold", va="center")
-    ax.text(0.85, 1.36,
-            r"$G$ alone is not sufficient: ranked by $G$ alone, the top 12 fills with FB4Z$\leftrightarrow$hDeltaA pairs — intensity without prominence; $E$ is the corrective (slide 2).",
-            fontsize=11.8, color=INK, va="center")
-    ax.text(0.85, 1.02,
-            r"the largest $G$ in the run, FB4Z$\leftrightarrow$hDeltaA8 at 0.487, is held to $S$ rank 12 by its $E$ of 0.490. The score needs both factors' vetoes.",
-            fontsize=11.8, color=INK, va="center")
 
     # ---- footer ------------------------------------------------------------
     ax.text(0.55, 0.40,

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """S-index slide image 1 (draft): S = E x G, the definition.
 
-For Sharon Crook. Journal typography (numbered definitions, Proposition
+Journal typography (numbered definitions, Proposition
 box) on Saul's dark slide ground (VS Code Dark+ palette, as in the
 AI-class slides and make_explainer_images.py). Numbers verified against
 resonator-pairs.87ef7c02.post.csv (62-neuron hDelta run, config 87ef7c02):
@@ -43,7 +43,7 @@ fig.text(0.5, 0.905,
          "$S_{\\mathrm{post}}$, the final version  ·  62-neuron hDelta run (config 87ef7c02)  ·  "
          "image 1 of 3: the definition  ·  image 2: $E$  ·  image 3: $G$",
          color=DIM, fontsize=13, ha="center", va="center")
-fig.text(0.5, 0.868, "For Sharon Crook — every symbol defined, in dependency order",
+fig.text(0.5, 0.868, "Every symbol defined, in dependency order",
          color=DIM, fontsize=12, style="italic", ha="center", va="center")
 
 # ---- left: 2-cycle diagram -------------------------------------------
