@@ -95,7 +95,7 @@ def main():
 
     # (8) raw block sum
     ax.text(2.05, 5.58,
-            r"$R_{AB} \;=\; \sum_{a \in A}\; \sum_{b \in B} w_{ab}$",
+            r"$R_{AB} \;=\; \sum_{(a,\,b)\,\in\,A \times B} w_{ab}$",
             fontsize=17.5, color=INK, va="center")
     ax.text(12.28, 5.58, "(8)", fontsize=13, color=GREY, va="center")
     ax.text(2.05, 5.22,
@@ -105,8 +105,8 @@ def main():
 
     # (9) mode block sum
     ax.text(2.05, 4.76,
-            r"$M_{AB} \;=\; \sum_{m=1}^{9} \omega_m \sum_{a \in A}\;"
-            r"\sum_{b \in B} \sigma_m\, u_{am} v_{bm}$",
+            r"$M_{AB} \;=\; \sum_{m=1}^{9} \omega_m \sum_{(a,\,b)\,\in\,A \times B}"
+            r" \sigma_m\, u_{am} v_{bm}$",
             fontsize=17, color=INK, va="center")
     ax.text(8.62, 4.76,
             r"$\omega_m = \sigma_m^2 \,/\, \sum_{j=1}^{9} \sigma_j^2$",
