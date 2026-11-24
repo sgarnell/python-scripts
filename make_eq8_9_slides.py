@@ -327,6 +327,10 @@ def slide1(d):
     ax.text(wx + ws / 2, wy - 0.30, "gold box: rows of G01 \u00d7 columns "
             "of G09, top-right of $W$", ha="center", va="center",
             fontsize=9.5, color=FAINT)
+    ax.text(wx + ws / 2, wy - 0.60,
+            f"$\\sum w^2$ over all of $W$ = {(d.W ** 2).sum():.2f} \u2014 "
+            "the total energy the modes divide (slide 2)",
+            ha="center", va="center", fontsize=9.5, color=FAINT)
 
     # ---- connector from the box to the opened-up block
     y_link = wy + ws - (3.5 / 62) * ws
@@ -456,10 +460,18 @@ def slide2(d):
                 va="center", fontweight=w)
         ax.text(cols[3], y, f"{d.omega[m]:.2f}", fontsize=11, color=c,
                 va="center", fontweight=w)
-    ax.text(0.40, 1.52, f"retained \u03c3\u00b2 total = "
-            f"{(d.sig ** 2).sum():.2f} of $W$'s {(d.W ** 2).sum():.2f} (91%)",
+    ax.plot([0.55, 3.85], [1.70, 1.70], color=FAINT, lw=1.0)
+    ax.text(cols[1], 1.50, "\u2014", fontsize=11, color=FAINT,
+            va="center")
+    ax.text(cols[2], 1.50, f"{(d.sig ** 2).sum():.2f}", fontsize=11,
+            color=INK, va="center", fontweight="bold")
+    ax.text(cols[3], 1.50, f"{d.omega.sum():.2f}", fontsize=11,
+            color=INK, va="center", fontweight="bold")
+    ax.text(0.40, 1.14, f"the retained nine hold "
+            f"{100 * (d.sig ** 2).sum() / (d.W ** 2).sum():.0f}% of "
+            f"$W$'s total $\\sum w^2$ = {(d.W ** 2).sum():.2f} (slide 1)",
             fontsize=9.5, color=DIM, va="center")
-    ax.text(0.40, 1.24, "\u03c9\u2081 = 14.85 / 36.55 = 0.41 \u2014 mode 1 "
+    ax.text(0.40, 0.58, "\u03c9\u2081 = 14.85 / 36.55 = 0.41 \u2014 mode 1 "
             "counts \u2248 16\u00d7 mode 9", fontsize=9.5, color=DIM,
             va="center")
 
