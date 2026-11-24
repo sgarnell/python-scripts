@@ -369,8 +369,9 @@ written over the set of ordered pairs.
 Needs numpy and matplotlib, plus the run's two data files
 (`z_matrix.42d6ad4c.npz` and `eigen.42d6ad4c.json`), located by
 `--data-dir` if given, else the `EIGEN_RUN_DIR` environment variable,
-else a `data/processed/hDelta_ABH_FB_15pre_001_merged_data_v1/`
-folder beside the script. On loading, the script verifies that
+else beside the script (or in the current folder), else in a
+`data/processed/hDelta_ABH_FB_15pre_001_merged_data_v1/` folder
+beside the script. On loading, the script verifies that
 G01 → G09 is the largest $|P|$ of the 132 ordered group pairs.
 
 ### `make_experiment_overview.py` — the Bruno experiment on one slide

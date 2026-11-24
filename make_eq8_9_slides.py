@@ -26,13 +26,16 @@ figures read as a continuation of it. Every number is computed from
 the run's stored artifacts; slide 1's build asserts that G01 -> G09
 really is the largest |P| of the 132 ordered group pairs.
 
-DATA LOCATION: the script reads z_matrix.42d6ad4c.npz and
-eigen.42d6ad4c.json from the run's processed-data folder. Point it
-there in one of three ways (first match wins):
+DATA LOCATION: the script reads two files from the run's
+processed-data folder -- z_matrix.42d6ad4c.npz and
+eigen.42d6ad4c.json. It finds them in one of four ways (first match
+wins):
   1. --data-dir <folder> on the command line, or
   2. the EIGEN_RUN_DIR environment variable, or
-  3. a data/processed/<dataset>/ folder beside this script (or beside
-     its parent folder, or in the current working directory) — i.e.
+  3. the two files beside this script, or in the current working
+     directory, or
+  4. a data/processed/<dataset>/ folder beside this script (or beside
+     its parent folder, or in the current working directory) -- i.e.
      drop the script into your eigen-decomposition project, or copy
      that processed folder next to it.
 If none of those is found, the script stops with a message naming
@@ -73,6 +76,7 @@ def resolve_data_dir(cli_dir):
         candidates.append(Path(cli_dir))
     if os.environ.get("EIGEN_RUN_DIR"):
         candidates.append(Path(os.environ["EIGEN_RUN_DIR"]))
+    candidates += [here, Path.cwd()]
     rel = Path("data") / "processed" / DATASET
     candidates += [here / rel, here.parent / rel, Path.cwd() / rel]
     for cand in candidates:
@@ -85,7 +89,9 @@ def resolve_data_dir(cli_dir):
         "Point the script at the folder holding them, one of:\n"
         "  python make_eq8_9_slides.py all --data-dir <folder>\n"
         "  EIGEN_RUN_DIR=<folder> python make_eq8_9_slides.py all\n"
-        "  or put data/processed/" + DATASET + "/ beside this script.\n"
+        "  or put the two files beside this script (or in the folder\n"
+        "  you run it from), or in data/processed/" + DATASET + "/\n"
+        "  beside this script.\n"
         f"Folders tried:\n  {tried}"
     )
 
