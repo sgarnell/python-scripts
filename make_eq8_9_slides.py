@@ -567,9 +567,11 @@ def slide2(d):
 # ---------------------------------------------------------------- slide 3
 def slide3(d):
     fig, ax = canvas()
-    ax.text(8, 8.52, "One block, three numbers \u2014 $R$, $M$, and the "
-            "gold weight $P$", ha="center", va="center", fontsize=19,
-            color=INK)
+    chain(fig, ax, 8, 8.52, [
+        (r"$\mathbf{P_{AB}\;=\;0.7\,R_{AB}\;+\;0.3\,M_{AB}}$",
+         dict(color=GOLD)),
+        ("  \u2014  one block, three numbers", dict(color=INK)),
+    ], 19)
 
     x0 = 1.05
     ax.text(x0, 7.70, r"$R_{AB} = \sum_{(a,b)\,\in\,A \times B} w_{ab}$"
